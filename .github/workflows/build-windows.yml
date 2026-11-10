@@ -36,13 +36,8 @@ jobs:
       - name: Install frontend dependencies
         run: pnpm install
 
-      - name: Build Tauri app
-        uses: tauri-apps/tauri-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          # HGhub 的打包命令是 pnpm app:build，不是默认的 pnpm tauri build
-          tauriScript: pnpm app:build
+      - name: Build Tauri app (using project script)
+        run: pnpm app:build
 
       - name: Upload Windows artifacts
         uses: actions/upload-artifact@v7
